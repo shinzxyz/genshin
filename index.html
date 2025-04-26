@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GENSHIN SHOP</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    let selectedItem = null;
+
+    function selectItem(item, checkbox) {
+      const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+      allCheckboxes.forEach(cb => {
+        if (cb !== checkbox) cb.checked = false;
+      });
+
+      if (checkbox.checked) {
+        selectedItem = item;
+      } else {
+        selectedItem = null;
+      }
+
+      toggleCheckoutButton();
+    }
+
+    function toggleCheckoutButton() {
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      if (selectedItem) {
+        checkoutBtn.classList.remove('hidden');
+      } else {
+        checkoutBtn.classList.add('hidden');
+      }
+    }
+
+    function checkout() {
+      const message = `.gbuy ${selectedItem}`;
+      const url = `https://wa.me/6287862997267?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+  <div class="max-w-3xl mx-auto py-10 px-4">
+    <h1 class="text-4xl font-bold mb-6 text-center text-yellow-400">GENSHIN SHOP</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Exp Potion', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Exp Potion</h2>
+            <p class="text-yellow-300">300 coins</p>
+          </div>
+        </div>
+      </label>
+
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Hero\'s Wit', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Hero's Wit</h2>
+            <p class="text-yellow-300">750 coins</p>
+          </div>
+        </div>
+      </label>
+
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Coin Pouch', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Coin Pouch</h2>
+            <p class="text-yellow-300">500 coins</p>
+          </div>
+        </div>
+      </label>
+
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Big Coin Chest', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Big Coin Chest</h2>
+            <p class="text-yellow-300">1200 coins</p>
+          </div>
+        </div>
+      </label>
+
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Mystery Character', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Mystery Character</h2>
+            <p class="text-yellow-300">1500 coins</p>
+          </div>
+        </div>
+      </label>
+
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Primogem Pack', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Primogem Pack</h2>
+            <p class="text-yellow-300">2000 coins</p>
+          </div>
+        </div>
+      </label>
+
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Standard Wish', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Standard Wish</h2>
+            <p class="text-yellow-300">800 coins</p>
+          </div>
+        </div>
+      </label>
+
+      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" onchange="selectItem('Rare Artifact', this)" class="form-checkbox h-5 w-5 text-blue-600">
+          <div>
+            <h2 class="text-xl font-semibold">Rare Artifact</h2>
+            <p class="text-yellow-300">1800 coins</p>
+          </div>
+        </div>
+      </label>
+    </div>
+    <div class="text-center mt-10">
+      <button id="checkoutBtn" onclick="checkout()" class="bg-green-500 px-6 py-3 text-xl rounded-xl hover:bg-green-400 hidden">Checkout via WhatsApp</button>
+      <p class="mt-4 text-sm text-gray-400">Gunakan <code>.gbuy [item]</code> untuk membeli</p>
+    </div>
+  </div>
+</body>
+</html>
