@@ -1,132 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GENSHIN SHOP</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script>
-    let selectedItem = null;
-
-    function selectItem(item, checkbox) {
-      const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-      allCheckboxes.forEach(cb => {
-        if (cb !== checkbox) cb.checked = false;
-      });
-
-      if (checkbox.checked) {
-        selectedItem = item;
-      } else {
-        selectedItem = null;
-      }
-
-      toggleCheckoutButton();
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genshin Impact Shop</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 20px;
     }
 
-    function toggleCheckoutButton() {
-      const checkoutBtn = document.getElementById('checkoutBtn');
-      if (selectedItem) {
-        checkoutBtn.classList.remove('hidden');
-      } else {
-        checkoutBtn.classList.add('hidden');
-      }
+    h1 {
+      text-align: center;
+      color: #ffcc00;
+      margin-bottom: 30px;
     }
 
-    function checkout() {
-      const message = `.gbuy ${selectedItem}`;
-      const url = `https://wa.me/6287862997267?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
+    .shop-item {
+      background-color: #1e1e1e;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s;
     }
-  </script>
+
+    .shop-item:hover {
+      transform: scale(1.02);
+    }
+
+    .shop-item input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .shop-item label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .shop-item span {
+      display: block;
+    }
+
+    #checkout {
+      display: none;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #checkout a {
+      background-color: #ffcc00;
+      color: #121212;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .info {
+      margin-left: 10px;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white font-sans">
-  <div class="max-w-3xl mx-auto py-10 px-4">
-    <h1 class="text-4xl font-bold mb-6 text-center text-yellow-400">GENSHIN SHOP</h1>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Exp Potion', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Exp Potion</h2>
-            <p class="text-yellow-300">300 coins</p>
-          </div>
-        </div>
-      </label>
-
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Hero\'s Wit', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Hero's Wit</h2>
-            <p class="text-yellow-300">750 coins</p>
-          </div>
-        </div>
-      </label>
-
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Coin Pouch', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Coin Pouch</h2>
-            <p class="text-yellow-300">500 coins</p>
-          </div>
-        </div>
-      </label>
-
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Big Coin Chest', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Big Coin Chest</h2>
-            <p class="text-yellow-300">1200 coins</p>
-          </div>
-        </div>
-      </label>
-
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Mystery Character', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Mystery Character</h2>
-            <p class="text-yellow-300">1500 coins</p>
-          </div>
-        </div>
-      </label>
-
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Primogem Pack', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Primogem Pack</h2>
-            <p class="text-yellow-300">2000 coins</p>
-          </div>
-        </div>
-      </label>
-
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Standard Wish', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Standard Wish</h2>
-            <p class="text-yellow-300">800 coins</p>
-          </div>
-        </div>
-      </label>
-
-      <label class="bg-gray-800 p-4 rounded-xl shadow-lg cursor-pointer">
-        <div class="flex items-center space-x-3">
-          <input type="checkbox" onchange="selectItem('Rare Artifact', this)" class="form-checkbox h-5 w-5 text-blue-600">
-          <div>
-            <h2 class="text-xl font-semibold">Rare Artifact</h2>
-            <p class="text-yellow-300">1800 coins</p>
-          </div>
-        </div>
-      </label>
-    </div>
-    <div class="text-center mt-10">
-      <button id="checkoutBtn" onclick="checkout()" class="bg-green-500 px-6 py-3 text-xl rounded-xl hover:bg-green-400 hidden">Checkout via WhatsApp</button>
-      <p class="mt-4 text-sm text-gray-400">Gunakan <code>.gbuy [item]</code> untuk membeli</p>
-    </div>
+<body>
+  <h1>GENSHIN SHOP</h1>
+  <div id="shop"></div>
+  <div id="checkout">
+    <a id="wa-link" href="#" target="_blank">Checkout via WhatsApp</a>
   </div>
+
+  <script>
+    const shopItems = [
+      { name: "Exp Potion", price: 300, effect: "exp", amount: 300 },
+      { name: "Hero's Wit", price: 750, effect: "exp", amount: 1000 },
+      { name: "Coin Pouch", price: 500, effect: "coins", amount: 1000 },
+      { name: "Big Coin Chest", price: 1200, effect: "coins", amount: 3000 },
+      { name: "Mystery Character", price: 1500, effect: "character" },
+      { name: "Primogem Pack", price: 2000, effect: "coins", amount: 5000 },
+      { name: "Standard Wish", price: 800, effect: "exp", amount: 500 },
+      { name: "Rare Artifact", price: 1800, effect: "exp", amount: 1500 },
+      { name: "Sweet Madame", price: 400, effect: "food", amount: 300 },
+      { name: "Fried Radish Balls", price: 500, effect: "food", amount: 500 },
+      { name: "Grilled Tiger Fish", price: 750, effect: "food", amount: 800 },
+      { name: "Mondstadt Hash Brown", price: 1200, effect: "food", amount: 1200 },
+      { name: "Slime Condensate", price: 200, effect: "material", amount: 1 },
+      { name: "Divining Scroll", price: 350, effect: "material", amount: 1 },
+      { name: "Sealed Scroll", price: 800, effect: "material", amount: 1 },
+      { name: "White Tassel", price: 1800, effect: "weapon", amount: 1 },
+      { name: "Sharpshooter's Oath", price: 1900, effect: "weapon", amount: 1 },
+      { name: "Adventurer's Flower", price: 1500, effect: "artifact", amount: 1 },
+      { name: "Lucky Dog's Clover", price: 1700, effect: "artifact", amount: 1 },
+      { name: "Scholar's Bookmark", price: 1800, effect: "artifact", amount: 1 },
+      { name: "Black Tassel", price: 2100, effect: "weapon", amount: 1 },
+      { name: "Fine Enhancement Ore", price: 900, effect: "exp", amount: 800 },
+      { name: "Mystic Enhancement Ore", price: 1500, effect: "exp", amount: 1500 },
+      { name: "Intertwined Fate", price: 1600, effect: "character" },
+      { name: "Acquaint Fate", price: 1000, effect: "character" },
+      { name: "Crystal Core", price: 600, effect: "material", amount: 1 },
+      { name: "Starconch", price: 500, effect: "material", amount: 1 },
+      { name: "Lotus Head", price: 400, effect: "material", amount: 1 },
+      { name: "Wolfhook", price: 450, effect: "material", amount: 1 },
+      { name: "Dandelion Seed", price: 550, effect: "material", amount: 1 }
+    ];
+
+    const shopContainer = document.getElementById("shop");
+
+    shopItems.forEach((item, index) => {
+      const itemDiv = document.createElement("div");
+      itemDiv.className = "shop-item";
+      itemDiv.innerHTML = `
+        <label>
+          <input type="radio" name="item" value="${item.name}" />
+          <div class="info">
+            <span><strong>Nama:</strong> ${item.name}</span>
+            <span><strong>Price:</strong> ${item.price} coins</span>
+            <span><strong>Effect:</strong> ${item.effect}</span>
+            <span><strong>Amount:</strong> ${item.amount ?? "-"}</span>
+          </div>
+        </label>
+      `;
+      shopContainer.appendChild(itemDiv);
+    });
+
+    document.querySelectorAll('input[name="item"]').forEach(input => {
+      input.addEventListener("change", function () {
+        const selected = document.querySelector('input[name="item"]:checked');
+        if (selected) {
+          const item = selected.value;
+          const link = `https://wa.me/6287862997267?text=.gbuy%20${encodeURIComponent(item)}`;
+          document.getElementById("wa-link").href = link;
+          document.getElementById("checkout").style.display = "block";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
